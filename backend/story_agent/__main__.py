@@ -25,8 +25,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-HOST = os.getenv("STORY_AGENT_HOST", "localhost")
-PORT = int(os.getenv("STORY_AGENT_PORT", "8080"))
+# Cloud Run injects PORT; fall back to STORY_AGENT_PORT, then 8080
+HOST = os.getenv("STORY_AGENT_HOST", "0.0.0.0")
+PORT = int(os.getenv("PORT", os.getenv("STORY_AGENT_PORT", "8080")))
 
 
 def build_agent_card() -> AgentCard:
@@ -74,10 +75,16 @@ def main() -> None:
         http_handler=request_handler,
     ).build()
 
-    # Allow the Vite dev server (port 5173) to call the backend
+    # CORS: allow localhost dev + any Cloud Run frontend (set CORS_ORIGIN to restrict)
+    cors_origins_env = os.getenv("CORS_ORIGINS", "")
+    cors_origins = (
+        [o.strip() for o in cors_origins_env.split(",") if o.strip()]
+        if cors_origins_env
+        else ["*"]
+    )
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+        allow_origins=cors_origins,
         allow_methods=["*"],
         allow_headers=["*"],
     )
