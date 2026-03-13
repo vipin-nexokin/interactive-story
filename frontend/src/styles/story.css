@@ -1,0 +1,66 @@
+/* ────────────────────────────────────────────────────────────────────────────
+   Interactive Story — Global Styles
+   CSS custom properties are accessible inside shadow DOM components.
+   Fonts: Crimson Pro (narrative body) + Inter (UI chrome)
+   ──────────────────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Colour palette — dark parchment */
+  --color-bg:           #1a1610;
+  --color-surface:      #241f17;
+  --color-surface-2:    #2e2720;
+  --color-border:       #3d3527;
+  --color-text:         #e8dcc8;
+  --color-text-muted:   #9e8f7a;
+  --color-accent:       #c8973a;
+  --color-accent-dark:  #a07830;
+  --color-accent-glow:  rgba(200, 151, 58, 0.15);
+  --color-error:        #d04040;
+
+  /* Typography */
+  --font-narrative: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --font-ui:        'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --max-width:  780px;
+  --radius:     8px;
+  --radius-lg:  12px;
+  --transition: 200ms ease;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(200, 151, 58, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(100, 60, 20, 0.08) 0%, transparent 60%);
+  background-attachment: fixed;
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar          { width: 6px; }
+::-webkit-scrollbar-track    { background: var(--color-bg); }
+::-webkit-scrollbar-thumb    { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }

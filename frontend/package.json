@@ -1,0 +1,22 @@
+{
+  "name": "interactive-story-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive Story frontend — A2UI renderer + A2A client",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lit": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.5",
+    "vite": "^2.9.18"
+  },
+  "engines": {
+    "node": ">=12.2"
+  }
+}

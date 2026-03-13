@@ -1,0 +1,20 @@
+# Python
+backend/.venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.egg-info/
+backend/.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Cloned deps (not submodule)
+a2ui-lib/
+
+# Vite build artifacts
+frontend/vite.config.ts.timestamp*.js
+
+# OS
+.DS_Store
+Thumbs.db
